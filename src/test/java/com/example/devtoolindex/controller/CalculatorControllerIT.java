@@ -1,5 +1,6 @@
 package com.example.devtoolindex.controller;
 
+import com.example.devtoolindex.App;
 import com.example.devtoolindex.response.Result;
 import org.junit.After;
 import org.junit.Assert;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,10 +18,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-@RunWith(SpringJUnit4ClassRunner.class) @SpringApplicationConfiguration(CalculatorController.class)
+@RunWith(SpringJUnit4ClassRunner.class) @SpringApplicationConfiguration(App.class)
+@WebIntegrationTest("server.port:8090")
 public class CalculatorControllerIT {
 
-    private static final String BASE_URL_ADD = "http://localhost:8080/calc/add";
+    private static final String BASE_URL_ADD = "http://localhost:8090/calc/add";
 
     private RestTemplate template = new TestRestTemplate();
 
