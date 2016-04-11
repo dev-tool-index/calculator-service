@@ -19,7 +19,7 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class) @SpringApplicationConfiguration(CalculatorController.class)
 public class CalculatorControllerIT {
 
-    private static final String BASE_URL_ADD = "http://127.0.0.1:8080/calc/add";
+    private static final String BASE_URL_ADD = "http://localhost:8080/calc/add";
 
     private RestTemplate template = new TestRestTemplate();
 
