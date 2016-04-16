@@ -1,7 +1,13 @@
+services:
+  - mongodb
+
 language: java
 
 jdk:
   - oraclejdk8
+
+before_script:
+  - sleep 15
 
 script:
   - ./gradlew check
