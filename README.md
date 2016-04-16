@@ -1,9 +1,9 @@
 # calculator-service
 
-The project is a part of __Example Application__ in [Developer Tool Index](https://www.gitbook.com/book/dev-tool-index/developer-tool-index/).
-
-## travis ci
 [![Build Status](https://travis-ci.org/dev-tool-index/calculator-service.svg?branch=master)](https://travis-ci.org/dev-tool-index/calculator-service)
+[![Coverage Status](https://coveralls.io/repos/github/dev-tool-index/calculator-service/badge.svg?branch=master)](https://coveralls.io/github/dev-tool-index/calculator-service?branch=master)
+
+The project is a part of __Example Application__ in [Developer Tool Index](https://www.gitbook.com/book/dev-tool-index/developer-tool-index/).
 
 ## build
 > $ ./gradlew clean build
