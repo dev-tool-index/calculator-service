@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration public class AppContext extends WebMvcConfigurerAdapter {
 
     @Bean public MongoDbFactory mongoDbFactory() throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient("192.168.31.223"), "testmongo");
+        return new SimpleMongoDbFactory(new MongoClient("127.0.0.1"), "testmongo");
     }
 
     @Bean public MongoTemplate mongoTemplate() throws Exception {
