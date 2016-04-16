@@ -10,18 +10,18 @@ The project is a part of __Example Application__ in [Developer Tool Index](https
 > $ ./gradlew clean build
 
 ## run app
-> $ java -jar build/libs/calculator-service-<version>.jar
+> $ MONGODB_PORT_27017_TCP_ADDR=192.168.31.223 java -jar build/libs/calculator-service-<version>.jar
 
 ## run unit tests
 > $ ./gradlew check
 
 ## simple manual test
 ```{r, engine='bash' curl}
-$ curl http://localhost:8090/calc/add?arg1=3&arg2=2
+$ curl http://192.168.31.223:8090/calc/add?arg1=3&arg2=2
 {"arg1":3,"arg2":0,"op":"add","result":3}
 ```
 
 ```{r, engine='bash' curl}
-$ curl http://localhost:8090/stat/general
+$ curl http://192.168.31.223:8090/stat/general
 {"count":23,"lastVisit":{"uuid":"12cfe30f-1c39-43e6-a02e-28e8b31c23b6","ip":"127.0.0.1","visitDate":"2016.04.16 AD at 13:36:38 EDT","path":"/stat/general"}}
 ```
