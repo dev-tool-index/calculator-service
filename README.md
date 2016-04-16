@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dev-tool-index/calculator-service.svg?branch=master)](https://travis-ci.org/dev-tool-index/calculator-service)
 [![Coverage Status](https://coveralls.io/repos/github/dev-tool-index/calculator-service/badge.svg?branch=master)](https://coveralls.io/github/dev-tool-index/calculator-service?branch=master)
+[![Release](https://jitpack.io/v/dev-tool-index/calculator-service.svg)](https://jitpack.io/#dev-tool-index/calculator-service)
 
 The project is a part of __Example Application__ in [Developer Tool Index](https://www.gitbook.com/book/dev-tool-index/developer-tool-index/).
 
