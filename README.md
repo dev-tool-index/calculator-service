@@ -17,6 +17,11 @@ The project is a part of __Example Application__ in [Developer Tool Index](https
 
 ## simple manual test
 ```{r, engine='bash' curl}
-$ curl http://localhost:8080/calc/add?arg1=3&arg2=2
+$ curl http://localhost:8090/calc/add?arg1=3&arg2=2
 {"arg1":3,"arg2":0,"op":"add","result":3}
+```
+
+```{r, engine='bash' curl}
+$ curl http://localhost:8090/stat/general
+{"count":23,"lastVisit":{"uuid":"12cfe30f-1c39-43e6-a02e-28e8b31c23b6","ip":"127.0.0.1","visitDate":"2016.04.16 AD at 13:36:38 EDT","path":"/stat/general"}}
 ```
