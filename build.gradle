@@ -62,6 +62,8 @@ dependencies {
     testCompile "junit:junit:$junitVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$sprintBootVersion"
     testCompile 'org.powermock:powermock-mockito-release-full:1.6.4'
+
+    //providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
 jacoco {
@@ -77,3 +79,4 @@ jacocoTestReport {
 }
 
 group = 'com.github.dev-tool-index'
+install.dependsOn(bootRepackage)
