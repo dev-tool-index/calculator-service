@@ -1,7 +1,7 @@
 package com.example.devtoolindex.controller;
 
 import com.example.devtoolindex.App;
-import com.example.devtoolindex.response.Result;
+import com.example.devtoolindex.response.CalcResult;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,10 +36,10 @@ public class CalculatorControllerIT {
     @Test public void testAddDefault() throws Exception {
 
 
-        ResponseEntity<Result> response = template.getForEntity(BASE_URL_ADD, Result.class);
+        ResponseEntity<CalcResult> response = template.getForEntity(BASE_URL_ADD, CalcResult.class);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
 
-        Result result = response.getBody();
+        CalcResult result = response.getBody();
         Assert.assertEquals(0, result.getResult());
 
     }
@@ -50,11 +50,11 @@ public class CalculatorControllerIT {
         urlVariables.put("arg1", "2");
         urlVariables.put("arg2", "3");
 
-        ResponseEntity<Result> response =
-            template.getForEntity(BASE_URL_ADD + "?arg1={arg1}&arg2={arg2}", Result.class, 2, 3);
+        ResponseEntity<CalcResult> response =
+            template.getForEntity(BASE_URL_ADD + "?arg1={arg1}&arg2={arg2}", CalcResult.class, 2, 3);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
 
-        Result result = response.getBody();
+        CalcResult result = response.getBody();
         Assert.assertEquals(5, result.getResult());
 
     }

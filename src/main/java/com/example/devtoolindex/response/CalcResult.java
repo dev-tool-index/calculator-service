@@ -2,13 +2,13 @@ package com.example.devtoolindex.response;
 
 import lombok.Getter;
 
-public class Result {
+public class CalcResult {
     @Getter private int arg1;
     @Getter private int arg2;
     @Getter private String op;
     @Getter private int result;
 
-    public Result(int arg1, int arg2, String op, int result) {
+    public CalcResult(int arg1, int arg2, String op, int result) {
         super();
         this.arg1 = arg1;
         this.arg2 = arg2;
@@ -16,7 +16,7 @@ public class Result {
         this.result = result;
     }
 
-    public Result() {
+    public CalcResult() {
         super();
     }
 }

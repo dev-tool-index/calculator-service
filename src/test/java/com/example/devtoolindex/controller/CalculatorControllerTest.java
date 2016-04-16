@@ -1,7 +1,7 @@
 package com.example.devtoolindex.controller;
 
 import com.example.devtoolindex.db.service.ArithmeticServiceImpl;
-import com.example.devtoolindex.response.Result;
+import com.example.devtoolindex.response.CalcResult;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class CalculatorControllerTest {
 
     @Test public void testAdd() throws Exception {
 
-        Result result = controller.add(2, 3);
+        CalcResult result = controller.add(2, 3);
         Assert.assertEquals(5, result.getResult());
 
     }
