@@ -52,6 +52,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile "org.springframework.boot:spring-boot-starter-web:$sprintBootVersion"
     compile 'com.github.dev-tool-index:calculator-db:1.2'
+    compile 'commons-validator:commons-validator:1.5.0'
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 

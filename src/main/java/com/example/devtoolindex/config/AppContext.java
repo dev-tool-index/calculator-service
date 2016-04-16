@@ -6,6 +6,7 @@ import com.example.devtoolindex.db.service.ArithmeticServiceImpl;
 import com.example.devtoolindex.db.service.IPStatService;
 import com.example.devtoolindex.db.service.IPStatServiceImpl;
 import com.mongodb.MongoClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -17,10 +18,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * Created by hongkailiu on 2016-04-13.
  */
-@Configuration public class AppContext extends WebMvcConfigurerAdapter {
+@Slf4j @Configuration public class AppContext extends WebMvcConfigurerAdapter {
 
     @Bean public MongoDbFactory mongoDbFactory() throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient("127.0.0.1"), "testmongo");
+        String mongoIP = Param.getMongoIP();
+        log.info("mongoIP: " + mongoIP);
+        return new SimpleMongoDbFactory(new MongoClient(mongoIP), "testmongo");
     }
 
     @Bean public MongoTemplate mongoTemplate() throws Exception {
