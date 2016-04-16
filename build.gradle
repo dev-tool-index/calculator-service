@@ -17,13 +17,15 @@ buildscript {
 }
 
 // Apply the java plugin to add support for Java
-apply plugin: 'java'
-apply plugin: 'spring-boot'
-
-jar {
-    baseName = 'calculator-service'
-    version =  '1.0'
+plugins {
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+    id "com.github.kt3k.coveralls" version "2.6.3"
+    id 'maven'
 }
+
+apply plugin: 'spring-boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -33,6 +35,10 @@ repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+    maven { url "https://jitpack.io" }
 }
 
 ext {
@@ -45,6 +51,7 @@ dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile "org.springframework.boot:spring-boot-starter-web:$sprintBootVersion"
+    compile 'com.github.dev-tool-index:calculator-db:1.2'
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 
@@ -54,5 +61,19 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile "junit:junit:$junitVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$sprintBootVersion"
-
+    testCompile 'org.powermock:powermock-mockito-release-full:1.6.4'
 }
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled = true
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+group = 'com.github.dev-tool-index'

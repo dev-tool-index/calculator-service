@@ -1,5 +1,6 @@
 package com.example.devtoolindex.controller;
 
+import com.example.devtoolindex.db.service.ArithmeticServiceImpl;
 import com.example.devtoolindex.response.Result;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ public class CalculatorControllerTest {
     @Before public void setUp() throws Exception {
         controller = new CalculatorController();
         Assert.assertNotNull(controller);
+        controller.setArithmeticService(new ArithmeticServiceImpl());
     }
 
 

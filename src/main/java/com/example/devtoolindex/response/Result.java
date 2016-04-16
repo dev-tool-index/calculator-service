@@ -1,9 +1,8 @@
 package com.example.devtoolindex.response;
 
-import lombok.Data;
 import lombok.Getter;
 
-@Data public class Result {
+public class Result {
     @Getter private int arg1;
     @Getter private int arg2;
     @Getter private String op;
