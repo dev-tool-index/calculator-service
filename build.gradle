@@ -51,6 +51,7 @@ dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile "org.springframework.boot:spring-boot-starter-web:$sprintBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$sprintBootVersion"
     compile 'com.github.dev-tool-index:calculator-db:1.2'
     compile 'commons-validator:commons-validator:1.5.0'
 
