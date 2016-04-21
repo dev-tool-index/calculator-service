@@ -1,6 +1,6 @@
 package com.example.devtoolindex.config;
 
-import com.example.devtoolindex.Interceptor.AccessInterceptor;
+import com.example.devtoolindex.interceptor.AccessInterceptor;
 import com.example.devtoolindex.db.service.ArithmeticService;
 import com.example.devtoolindex.db.service.ArithmeticServiceImpl;
 import com.example.devtoolindex.db.service.IPStatService;

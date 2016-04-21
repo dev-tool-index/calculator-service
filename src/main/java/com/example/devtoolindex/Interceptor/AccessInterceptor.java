@@ -1,4 +1,4 @@
-package com.example.devtoolindex.Interceptor;
+package com.example.devtoolindex.interceptor;
 
 import com.example.devtoolindex.db.entity.IPStatEntity;
 import com.example.devtoolindex.db.service.IPStatService;
