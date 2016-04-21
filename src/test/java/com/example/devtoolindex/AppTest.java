@@ -1,5 +1,6 @@
 package com.example.devtoolindex;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,10 +15,11 @@ import org.springframework.context.support.GenericApplicationContext;
  */
 @RunWith(PowerMockRunner.class) @PrepareForTest(SpringApplication.class) public class AppTest {
 
-    @Test public void testMain() throws Exception {
+    private String[] args = new String[] {};
+    @Before public void setup(){
         PowerMockito.mockStatic(SpringApplication.class);
-
-        String[] args = new String[] {};
+    }
+    @Test public void testMain() throws Exception {
         Mockito.when(SpringApplication.run(App.class, args))
             .thenReturn(new GenericApplicationContext());
 
@@ -28,5 +30,11 @@ import org.springframework.context.support.GenericApplicationContext;
         //PowerMockito.verifyStatic();
         App.main(args);
 
+    }
+
+    @Test public void testMainWithException() throws Exception {
+        Mockito.when(SpringApplication.run(App.class, args))
+            .thenThrow(new RuntimeException("exception msg"));
+        App.main(args);
     }
 }
