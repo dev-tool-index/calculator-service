@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
     public static final String DATE_PATTERN = "yyyy.MM.dd G 'at' HH:mm:ss z";
     public static final String MONGO_IP_ENV_VAR_NAME = "MONGODB_PORT_27017_TCP_ADDR";
     public static final String MONGO_HOSTNAME = "mongodb";
-    public static final String DEFAULT_MONGO_IP = "127.0.0.0";
+    public static final String DEFAULT_MONGO_IP = "127.0.0.1";
 
     @Setter private static Helper helper = new Helper();
 
