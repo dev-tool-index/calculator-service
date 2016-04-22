@@ -31,10 +31,4 @@ import org.springframework.context.support.GenericApplicationContext;
         App.main(args);
 
     }
-
-    @Test public void testMainWithException() throws Exception {
-        Mockito.when(SpringApplication.run(App.class, args))
-            .thenThrow(new RuntimeException("exception msg"));
-        App.main(args);
-    }
 }
