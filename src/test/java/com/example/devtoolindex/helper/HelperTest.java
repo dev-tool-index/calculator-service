@@ -1,7 +1,7 @@
 package com.example.devtoolindex.helper;
 
 import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 import java.net.UnknownHostException;
@@ -19,30 +19,30 @@ public class HelperTest {
 
     @Test public void testGetIPByHostname() throws Exception {
         String result = unitUnderTest.getIPByHostname("localhost");
-        Assert.assertTrue(StringUtils.isNoneBlank(result));
+        Assertions.assertThat(StringUtils.isNoneBlank(result)).isTrue();
     }
 
     @Test public void testGetIPByHostnameException() throws Exception {
         try {
             unitUnderTest.getIPByHostname("unknown-host");
-            Assert.fail("UnknownHostException did not occur");
+            Assertions.fail("UnknownHostException did not occur");
         } catch (Exception e){
-            Assert.assertTrue(e instanceof UnknownHostException);
+            Assertions.assertThat(e instanceof UnknownHostException).isTrue();
         }
     }
 
     @Test public void testIsValidIP() throws Exception {
         boolean result = unitUnderTest.isValidIP("127.0.0.1");
-        Assert.assertEquals(true, result);
+        Assertions.assertThat(result).isTrue();
     }
 
     @Test public void testIsValidIPNull() throws Exception {
         boolean result = unitUnderTest.isValidIP(null);
-        Assert.assertEquals(false, result);
+        Assertions.assertThat(result).isFalse();
     }
 
     @Test public void testIsValidIPInvalid() throws Exception {
         boolean result = unitUnderTest.isValidIP("invalid-ip");
-        Assert.assertEquals(false, result);
+        Assertions.assertThat(result).isFalse();
     }
 }
