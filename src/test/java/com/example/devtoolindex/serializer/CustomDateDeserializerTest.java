@@ -4,48 +4,47 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.Assertions;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 
 /**
  * Created by hongkailiu on 2016-04-16.
  */
-@RunWith(MockitoJUnitRunner.class)
 public class CustomDateDeserializerTest {
 
-    private CustomDateDeserializer unitUnderTest;
+    @InjectMocks private CustomDateDeserializer unitUnderTest;
     @Mock private JsonParser mockParser;
     @Mock private DeserializationContext mockContext;
     @Mock private ObjectCodec mockObjectCodec;
     @Mock private JsonNode mockNode;
 
-    @Before public void setUp() throws Exception {
-        unitUnderTest = new CustomDateDeserializer();
+    @BeforeMethod public void beforeMethod() throws Exception {
+        MockitoAnnotations.initMocks(this);
         Mockito.when(mockParser.getCodec()).thenReturn(mockObjectCodec);
         Mockito.when(mockObjectCodec.readTree(mockParser)).thenReturn(mockNode);
     }
 
-    @After public void tearDown() throws Exception {
+    @AfterMethod public void afterMethod() throws Exception {
 
     }
 
     @Test public void testDeserializeWithEmptyString() throws Exception {
         Mockito.when(mockNode.asText()).thenReturn("");
         Date result = unitUnderTest.deserialize(mockParser, mockContext);
-        Assert.assertNull(result);
+        Assertions.assertThat(result).isNull();
     }
 
     @Test public void testDeserializeWithInvalidString() throws Exception {
         Mockito.when(mockNode.asText()).thenReturn("invalid string");
         Date result = unitUnderTest.deserialize(mockParser, mockContext);
-        Assert.assertNull(result);
+        Assertions.assertThat(result).isNull();
     }
 }
