@@ -1,6 +1,9 @@
 services:
   - mongodb
 
+env:
+  - MONGODB_PORT_27017_TCP_ADDR=127.0.0.1
+
 language: java
 
 jdk:
