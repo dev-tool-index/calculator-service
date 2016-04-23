@@ -40,7 +40,7 @@ public class StatResult {
             return visitDate;
         }
 
-        @JsonDeserialize(using = CustomDateDeserializer.class) public void setVisitDate(Date date) {
+        @JsonDeserialize(using = CustomDateDeserializer.class) @Override public void setVisitDate(Date date) {
             this.visitDate = date;
         }
     }
