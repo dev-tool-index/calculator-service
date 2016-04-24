@@ -58,15 +58,21 @@ dependencies {
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 
-    // Declare the dependency for your favourite test framework you want to use in your tests.
-    // TestNG is also supported by the Gradle Test task. Just change the
-    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-    // 'test.useTestNG()' to your build script.
-    testCompile "junit:junit:$junitVersion"
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.assertj:assertj-core:3.4.1'
     testCompile "org.springframework.boot:spring-boot-starter-test:$sprintBootVersion"
     testCompile 'org.powermock:powermock-mockito-release-full:1.6.4'
-
+    //testCompile 'com.jayway.jsonpath:json-path:2.2.0'
+    testCompile 'com.jayway.jsonpath:json-path-assert:2.2.0'
     //providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testRuntime 'org.codehaus.sonar-plugins.java:sonar-jacoco-listeners:1.3'
+}
+
+test {
+    useTestNG()
+    options {
+        listeners << 'org.sonar.java.jacoco.TestNGListener'
+    }
 }
 
 jacoco {
