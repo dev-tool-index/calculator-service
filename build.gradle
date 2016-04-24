@@ -58,6 +58,7 @@ dependencies {
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 
+    // testng support sonar with coverage per test
     testCompile 'org.testng:testng:6.9.10'
     testCompile 'org.assertj:assertj-core:3.4.1'
     testCompile "org.springframework.boot:spring-boot-starter-test:$sprintBootVersion"
