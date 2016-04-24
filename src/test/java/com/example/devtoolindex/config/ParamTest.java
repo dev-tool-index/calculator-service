@@ -1,14 +1,10 @@
 package com.example.devtoolindex.config;
 
 import com.example.devtoolindex.helper.Helper;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Matchers;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.assertj.core.api.Assertions;
+import org.mockito.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.net.UnknownHostException;
 
@@ -16,21 +12,20 @@ import java.net.UnknownHostException;
 /**
  * Created by hongkailiu on 2016-04-16.
  */
-@RunWith(MockitoJUnitRunner.class) public class ParamTest {
-    private Param p;
+public class ParamTest {
     @Mock private Helper mockHelper;
     private static final String VALID_IP = "valid.ip";
     private static final String DEFAULT_MONGO_IP = "127.0.0.1";
-    private Param unitUnderTest;
+    @InjectMocks private Param unitUnderTest;
 
-    @Before public void setUp() throws Exception {
-        unitUnderTest = new Param();
+    @BeforeMethod public void beforeMethod() throws Exception {
+        MockitoAnnotations.initMocks(this);
         unitUnderTest.setHelper(mockHelper);
     }
 
     @Test public void testConstructor() {
-        p = new Param();
-        Assert.assertNotNull(p);
+        unitUnderTest = new Param();
+        Assertions.assertThat(unitUnderTest).isNotNull();
     }
 
     @Test public void testGetMongoIPWithInvalidInvalid() throws Exception {
@@ -38,7 +33,7 @@ import java.net.UnknownHostException;
         Mockito.when(mockHelper.getSystemEnv(Matchers.anyString())).thenReturn(null);
         Mockito.when(mockHelper.getIPByHostname(Matchers.anyString())).thenReturn(null);
         String result = unitUnderTest.getMongoIP(DEFAULT_MONGO_IP);
-        Assert.assertEquals(DEFAULT_MONGO_IP, result);
+        Assertions.assertThat(result).isEqualTo(DEFAULT_MONGO_IP);
         Mockito.verify(mockHelper, Mockito.times(2)).isValidIP(null);
         Mockito.verify(mockHelper, Mockito.times(1)).getSystemEnv(Matchers.anyString());
         Mockito.verify(mockHelper, Mockito.times(1)).getIPByHostname(Matchers.anyString());
@@ -50,7 +45,7 @@ import java.net.UnknownHostException;
         Mockito.when(mockHelper.getSystemEnv(Matchers.anyString())).thenReturn(null);
         Mockito.when(mockHelper.getIPByHostname(Matchers.anyString())).thenReturn(VALID_IP);
         String result = unitUnderTest.getMongoIP(DEFAULT_MONGO_IP);
-        Assert.assertEquals(VALID_IP, result);
+        Assertions.assertThat(result).isEqualTo(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(1)).isValidIP(null);
         Mockito.verify(mockHelper, Mockito.times(1)).isValidIP(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(1)).getSystemEnv(Matchers.anyString());
@@ -62,7 +57,7 @@ import java.net.UnknownHostException;
         Mockito.when(mockHelper.getSystemEnv(Matchers.anyString())).thenReturn(VALID_IP);
         Mockito.when(mockHelper.getIPByHostname(Matchers.anyString())).thenReturn(null);
         String result = unitUnderTest.getMongoIP(DEFAULT_MONGO_IP);
-        Assert.assertEquals(VALID_IP, result);
+        Assertions.assertThat(result).isEqualTo(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(0)).isValidIP(null);
         Mockito.verify(mockHelper, Mockito.times(1)).isValidIP(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(1)).getSystemEnv(Matchers.anyString());
@@ -75,7 +70,7 @@ import java.net.UnknownHostException;
         Mockito.when(mockHelper.getSystemEnv(Matchers.anyString())).thenReturn(VALID_IP);
         Mockito.when(mockHelper.getIPByHostname(Matchers.anyString())).thenReturn(null);
         String result = unitUnderTest.getMongoIP(DEFAULT_MONGO_IP);
-        Assert.assertEquals(VALID_IP, result);
+        Assertions.assertThat(result).isEqualTo(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(0)).isValidIP(null);
         Mockito.verify(mockHelper, Mockito.times(1)).isValidIP(VALID_IP);
         Mockito.verify(mockHelper, Mockito.times(1)).getSystemEnv(Matchers.anyString());
@@ -87,7 +82,7 @@ import java.net.UnknownHostException;
         Mockito.when(mockHelper.getSystemEnv(Matchers.anyString())).thenReturn(null);
         Mockito.when(mockHelper.getIPByHostname(Matchers.anyString())).thenThrow(new UnknownHostException("test"));
         String result = unitUnderTest.getMongoIP(DEFAULT_MONGO_IP);
-        Assert.assertEquals(DEFAULT_MONGO_IP, result);
+        Assertions.assertThat(result).isEqualTo(DEFAULT_MONGO_IP);
         Mockito.verify(mockHelper, Mockito.times(2)).isValidIP(null);
         Mockito.verify(mockHelper, Mockito.times(1)).getSystemEnv(Matchers.anyString());
         Mockito.verify(mockHelper, Mockito.times(1)).getIPByHostname(Matchers.anyString());
