@@ -19,6 +19,7 @@ buildscript {
 // Apply the java plugin to add support for Java
 plugins {
     id 'java'
+    id 'war'
     id 'idea'
     id 'jacoco'
     id "com.github.kt3k.coveralls" version "2.6.3"

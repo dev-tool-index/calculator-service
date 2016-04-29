@@ -7,12 +7,12 @@
 The project is a part of __Example Application__ in [Developer Tool Index](https://www.gitbook.com/book/dev-tool-index/developer-tool-index/).
 
 ## build
-> $ ./gradlew clean build
+> $ ./gradlew clean assemble
 
 ## run app
-> $ MONGODB_PORT_27017_TCP_ADDR=192.168.31.223 java -jar build/libs/calculator-service-<version>.jar
+> $ MONGODB_PORT_27017_TCP_ADDR=192.168.31.223 java -jar build/libs/calculator-service.war
 
-## run unit tests
+## run tests
 > $ ./gradlew check
 
 ## simple manual test
