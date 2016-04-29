@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
         int count = ipStatService.count();
         IPStatEntity ipStatEntity = ipStatService.findLatest();
         if (ipStatEntity!=null) {
-            log.debug("aaa" + ipStatEntity.getVisitDate());
+            log.debug("ipStatEntity.getVisitDate(): " + ipStatEntity.getVisitDate());
             return new StatResult(count, ipStatEntity);
+        } else {
+            log.debug("ipStatEntity==null");
         }
         return new StatResult();
     }
