@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
     @RequestMapping("/general") @ResponseBody public StatResult general() {
         int count = ipStatService.count();
         IPStatEntity ipStatEntity = ipStatService.findLatest();
-        log.debug("aaa" + ipStatEntity.getVisitDate());
-        return new StatResult(count, ipStatEntity);
+        if (ipStatEntity!=null) {
+            log.debug("aaa" + ipStatEntity.getVisitDate());
+            return new StatResult(count, ipStatEntity);
+        }
+        return new StatResult();
     }
 }
