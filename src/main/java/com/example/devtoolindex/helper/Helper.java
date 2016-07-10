@@ -32,8 +32,4 @@ import java.net.UnknownHostException;
     public MongoDbFactory getSimpleMongoDbFactory(MongoClientURI uri) throws UnknownHostException {
         return new SimpleMongoDbFactory(uri);
     }
-
-    public MongoDbFactory getSimpleMongoDbFactory(MongoClient mongoClient, String databaseName) throws UnknownHostException {
-        return new SimpleMongoDbFactory(mongoClient, databaseName);
-    }
 }
