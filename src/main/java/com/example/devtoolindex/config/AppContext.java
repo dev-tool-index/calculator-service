@@ -1,13 +1,15 @@
 package com.example.devtoolindex.config;
 
-import com.example.devtoolindex.helper.Helper;
 import com.example.devtoolindex.interceptor.AccessInterceptor;
 import com.example.devtoolindex.db.service.ArithmeticService;
 import com.example.devtoolindex.db.service.ArithmeticServiceImpl;
 import com.example.devtoolindex.db.service.IPStatService;
 import com.example.devtoolindex.db.service.IPStatServiceImpl;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,19 +26,19 @@ import java.net.UnknownHostException;
  */
 @Slf4j @Configuration public class AppContext extends WebMvcConfigurerAdapter {
 
+    @Autowired private Param param;
+
     @Value("${default.mongo.ip}")
     private String userBucketPath;
 
-    @Bean public Helper helper(){
-        return new Helper();
-    }
-
-    @Bean public Param param(){
-        return new Param();
-    }
-
     @Bean public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-        String mongoIP = param().getMongoIP(userBucketPath);
+
+        String uri = param.getMongoURI();
+        if (StringUtils.isNotBlank(uri)) {
+            log.info("mongo uri: " + uri);
+            return new SimpleMongoDbFactory(new MongoClientURI(uri));
+        }
+        String mongoIP = param.getMongoIP(userBucketPath);
         log.info("mongoIP: " + mongoIP);
         return new SimpleMongoDbFactory(new MongoClient(mongoIP), "testmongo");
     }
