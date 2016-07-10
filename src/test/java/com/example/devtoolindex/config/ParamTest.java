@@ -20,7 +20,6 @@ public class ParamTest {
 
     @BeforeMethod public void beforeMethod() throws Exception {
         MockitoAnnotations.initMocks(this);
-        unitUnderTest.setHelper(mockHelper);
     }
 
     @Test public void testConstructor() {
