@@ -61,6 +61,7 @@ dependencies {
     compile 'com.github.dev-tool-index:calculator-db:1.2'
     compile 'commons-validator:commons-validator:1.5.0'
     compile 'net.bull.javamelody:javamelody-core:1.62.0'
+    compile 'com.thoughtworks.xstream:xstream:1.4.2'
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 
