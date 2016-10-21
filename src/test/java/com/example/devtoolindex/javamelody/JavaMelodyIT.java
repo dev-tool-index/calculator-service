@@ -28,7 +28,7 @@ public class JavaMelodyIT extends
     private RestTemplate template = new TestRestTemplate();
 
     @Test
-    public void testGeneral() throws Exception {
+    public void testMonitoring() throws Exception {
         ResponseEntity<String> response = template.getForEntity(BASE_URL_MONITORING + "?format=json", String.class);
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
