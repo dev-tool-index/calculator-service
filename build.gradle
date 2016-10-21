@@ -116,3 +116,7 @@ task versioning(type:Exec) {
     }
 
 }
+
+processResources {
+    dependsOn versioning
+}
