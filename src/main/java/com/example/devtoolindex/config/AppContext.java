@@ -1,5 +1,6 @@
 package com.example.devtoolindex.config;
 
+import com.example.devtoolindex.helper.Helper;
 import com.example.devtoolindex.helper.MongoDbFactoryHelper;
 import com.example.devtoolindex.interceptor.AccessInterceptor;
 import com.example.devtoolindex.db.service.ArithmeticService;
@@ -9,6 +10,7 @@ import com.example.devtoolindex.db.service.IPStatServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.endpoint.InfoEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.net.UnknownHostException;
+import java.util.LinkedHashMap;
 
 /**
  * Created by hongkailiu on 2016-04-13.
@@ -25,6 +28,8 @@ import java.net.UnknownHostException;
 @Slf4j @Configuration public class AppContext extends WebMvcConfigurerAdapter {
 
     @Autowired private MongoDbFactoryHelper mongoDbFactoryHelper;
+
+    @Autowired private Helper helper;
 
     @Value("${default.mongo.ip}")
     private String defaultMongoIp;
@@ -47,6 +52,13 @@ import java.net.UnknownHostException;
 
     @Bean public AccessInterceptor accessInterceptor() {
         return new AccessInterceptor();
+    }
+
+    @Bean
+    public InfoEndpoint infoEndpoint() {
+        LinkedHashMap<String, Object> map = new LinkedHashMap();
+        map.put("version", helper.getAppVersion());
+        return new InfoEndpoint(map);
     }
 
     @Override

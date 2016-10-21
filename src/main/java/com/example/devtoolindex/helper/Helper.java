@@ -1,21 +1,31 @@
 package com.example.devtoolindex.helper;
 
-import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.InetAddressValidator;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 
 /**
  * Created by hongkailiu on 2016-04-16.
  */
-@Component @Slf4j public class Helper {
+@Component
+@Slf4j
+public class Helper {
+
+    private String appVersion;
+
     public String getSystemEnv(String name) {
         return System.getenv(name);
     }
@@ -31,5 +41,40 @@ import java.net.UnknownHostException;
 
     public MongoDbFactory getSimpleMongoDbFactory(MongoClientURI uri) throws UnknownHostException {
         return new SimpleMongoDbFactory(uri);
+    }
+
+    public String getAppVersion() {
+        if (appVersion == null) {
+            synchronized (this) {
+                if (appVersion == null) {
+                    appVersion = loadVersionFromResource();
+                }
+            }
+        }
+        return appVersion;
+    }
+
+    private String loadVersionFromResource() {
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream is = classloader.getResourceAsStream("VERSION");
+        String defaultVersion = "unknown-version";
+        try {
+            if (is != null) {
+                String version = StringUtils.trim(IOUtils.toString(is, Charset.defaultCharset()));
+                if (StringUtils.isNoneBlank(version)) {
+                    log.error("empty version file");
+                    return version;
+                }
+                return defaultVersion;
+            }
+            log.error("no version file found");
+            return defaultVersion;
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return defaultVersion;
+        } finally {
+            IOUtils.closeQuietly(is);
+        }
+
     }
 }

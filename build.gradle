@@ -62,6 +62,7 @@ dependencies {
     compile 'commons-validator:commons-validator:1.5.0'
     compile 'net.bull.javamelody:javamelody-core:1.62.0'
     compile 'com.thoughtworks.xstream:xstream:1.4.2'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
     compileOnly "org.projectlombok:lombok:1.16.8"
 
@@ -103,4 +104,15 @@ sonarqube {
     properties {
         property 'sonar.host.url', 'http://192.168.31.223:9000'
     }
+}
+
+task versioning(type:Exec) {
+    workingDir './'
+    commandLine './bin/generate_version.sh'
+    standardOutput = new ByteArrayOutputStream()
+    doLast {
+        String output = standardOutput.toString()
+        logger.info("===================" +  'output ' + output)
+    }
+
 }
