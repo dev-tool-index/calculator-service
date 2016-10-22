@@ -26,6 +26,10 @@ public class Helper {
 
     private String appVersion;
 
+    /* package */ static final String EMPTY_VERSION_FILE = "empty version file";
+    /* package */ static final String NO_VERSION_FILE_FOUND = "no version file found";
+    /* package */ static final String VERSION = "VERSION";
+
     public String getSystemEnv(String name) {
         return System.getenv(name);
     }
@@ -55,23 +59,22 @@ public class Helper {
     }
 
     private String loadVersionFromResource() {
+        return loadVersionFromResource(VERSION);
+    }
+
+    /* package */ String loadVersionFromResource(String path) {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("VERSION");
-        String defaultVersion = "unknown-version";
+        InputStream is = classloader.getResourceAsStream(path);
         try {
-            if (is != null) {
-                String version = StringUtils.trim(IOUtils.toString(is, Charset.defaultCharset()));
-                if (StringUtils.isNoneBlank(version)) {
-                    log.error("empty version file");
-                    return version;
-                }
-                return defaultVersion;
+            String version = StringUtils.trim(IOUtils.toString(is, Charset.defaultCharset()));
+            if (StringUtils.isNoneBlank(version)) {
+                return version;
             }
-            log.error("no version file found");
-            return defaultVersion;
-        } catch (IOException e) {
+            log.error(EMPTY_VERSION_FILE);
+            return EMPTY_VERSION_FILE;
+        } catch (IOException | NullPointerException e) {
             log.error(e.getMessage(), e);
-            return defaultVersion;
+            return NO_VERSION_FILE_FOUND;
         } finally {
             IOUtils.closeQuietly(is);
         }
