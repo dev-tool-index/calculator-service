@@ -47,7 +47,7 @@ public class JavaMelodyConfiguration implements ServletContextInitializer {
 		// to exclude images, css, fonts and js urls from the monitoring:
 		// javaMelody.addInitParameter(Parameter.URL_EXCLUDE_PATTERN.getCode(), "(/webjars/.*|/css/.*|/images/.*|/fonts/.*|/js/.*)");
 		// to add basic auth:
-		// javaMelody.addInitParameter(Parameter.AUTHORIZED_USERS.getCode(), "admin:pwd");
+		javaMelody.addInitParameter(Parameter.AUTHORIZED_USERS.getCode(), "admin:dev.tool.index");
 		// to change the default storage directory:
 		// javaMelody.addInitParameter(Parameter.STORAGE_DIRECTORY.getCode(), "/tmp/javamelody");
 
