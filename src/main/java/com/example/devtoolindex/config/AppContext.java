@@ -37,6 +37,9 @@ import java.util.LinkedHashMap;
     @Value("${deployed.by}")
     private String deployedBy;
 
+    @Value("${secret.key1}")
+    private String secretKey1;
+
     @Bean public MongoDbFactory mongoDbFactory() throws UnknownHostException {
         return mongoDbFactoryHelper.getMongoDbFactory(defaultMongoIp);
     }
@@ -62,6 +65,7 @@ import java.util.LinkedHashMap;
         LinkedHashMap<String, Object> map = new LinkedHashMap();
         map.put("version", helper.getAppVersion());
         map.put("deployedBy", deployedBy);
+        map.put("secretKey1", secretKey1);
         return new InfoEndpoint(map);
     }
 
