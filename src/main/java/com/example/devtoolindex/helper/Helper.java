@@ -64,8 +64,7 @@ public class Helper {
 
     /* package */ String loadVersionFromResource(String path) {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream(path);
-        try {
+        try (InputStream is = classloader.getResourceAsStream(path)) {
             String version = StringUtils.trim(IOUtils.toString(is, Charset.defaultCharset()));
             if (StringUtils.isNoneBlank(version)) {
                 return version;
@@ -75,9 +74,6 @@ public class Helper {
         } catch (IOException | NullPointerException e) {
             log.error(e.getMessage(), e);
             return NO_VERSION_FILE_FOUND;
-        } finally {
-            IOUtils.closeQuietly(is);
         }
-
     }
 }
