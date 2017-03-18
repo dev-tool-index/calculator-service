@@ -12,7 +12,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
     }
 }
 
@@ -48,7 +48,6 @@ configurations {
 }
 
 ext {
-    sprintBootVersion = "1.3.3.RELEASE"
     junitVersion = "4.12"
 }
 
@@ -56,8 +55,8 @@ ext {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.18'
-    compile "org.springframework.boot:spring-boot-starter-web:$sprintBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$sprintBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
     compile 'com.github.dev-tool-index:calculator-db:1.2'
     compile 'commons-validator:commons-validator:1.5.0'
     compile 'net.bull.javamelody:javamelody-core:1.62.0'
@@ -69,7 +68,7 @@ dependencies {
     // testng support sonar with coverage per test
     testCompile 'org.testng:testng:6.9.10'
     testCompile 'org.assertj:assertj-core:3.4.1'
-    testCompile "org.springframework.boot:spring-boot-starter-test:$sprintBootVersion"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
     testCompile 'org.powermock:powermock-mockito-release-full:1.6.4'
     //testCompile 'com.jayway.jsonpath:json-path:2.2.0'
     testCompile 'com.jayway.jsonpath:json-path-assert:2.2.0'

@@ -25,3 +25,9 @@ $ curl http://192.168.31.223:8090/calc/add?arg1=3&arg2=2
 $ curl http://192.168.31.223:8090/stat/general
 {"count":23,"lastVisit":{"uuid":"12cfe30f-1c39-43e6-a02e-28e8b31c23b6","ip":"127.0.0.1","visitDate":"2016.04.16 AD at 13:36:38 EDT","path":"/stat/general"}}
 ```
+
+## start a mongodb server via docker
+
+```bash
+$ docker run --hostname my-mongo --name some-mongo -d -p 27017:27017 -p 28017:28017 mongo:3.2 --rest
+```
