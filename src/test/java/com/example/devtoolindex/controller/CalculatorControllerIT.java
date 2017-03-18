@@ -1,28 +1,27 @@
 package com.example.devtoolindex.controller;
 
-import com.example.devtoolindex.App;
 import com.example.devtoolindex.response.CalcResult;
 import org.assertj.core.api.Assertions;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringApplicationConfiguration(App.class)
-@WebIntegrationTest("server.port:8090")
+@SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT)
 public class CalculatorControllerIT extends AbstractTestNGSpringContextTests {
 
-    private static final String BASE_URL_ADD = "http://localhost:8090/calc/add";
+    private static final String BASE_URL_ADD = "/calc/add";
 
-    private RestTemplate template = new TestRestTemplate();
+    @Autowired
+    private TestRestTemplate template;
 
     @BeforeMethod public void beforeMethod() throws Exception {
     }

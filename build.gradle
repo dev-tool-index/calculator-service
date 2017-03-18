@@ -27,7 +27,7 @@ plugins {
     id "org.sonarqube" version "1.2"
 }
 
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
