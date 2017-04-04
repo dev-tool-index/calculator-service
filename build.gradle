@@ -108,7 +108,7 @@ sonarqube {
 
 task versioning(type:Exec) {
     workingDir './'
-    commandLine './bin/generate_version.sh', "$buildDir/resources/main/VERSION"
+    commandLine './bin/generate_version.sh', "$buildDir/resources/main"
     standardOutput = new ByteArrayOutputStream()
     doLast {
         String output = standardOutput.toString()

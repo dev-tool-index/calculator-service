@@ -4,11 +4,12 @@ readonly SOURCE_FOLDER=$(dirname $(readlink -f ${0}))
 readonly VERSION=$(git describe --tags --always --dirty)
 
 if [[ "$#" -eq 0 ]]; then
-  version_file=${SOURCE_FOLDER}/../build/resources/main/VERSION
+  version_folder=${SOURCE_FOLDER}/../build/resources/main
 else
-  version_file=$1
+  version_folder=$1
 fi
 
 echo "version is ${VERSION}"
 
-echo ${VERSION} > ${version_file}
+mkdir -p ${version_folder}
+echo ${VERSION} > ${version_folder}/VERSION
