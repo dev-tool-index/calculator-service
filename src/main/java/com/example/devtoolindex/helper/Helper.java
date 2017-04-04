@@ -65,14 +65,14 @@ public class Helper {
     /* package */ String loadVersionFromResource(String path) {
         try {
             String version = StringUtils
-                .trim(Resources.toString(Resources.getResource(VERSION),
+                .trim(Resources.toString(Resources.getResource(path),
                     Charsets.UTF_8));
             if (StringUtils.isNoneBlank(version)) {
                 return version;
             }
             log.error(EMPTY_VERSION_FILE);
             return EMPTY_VERSION_FILE;
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             log.error(e.getMessage(), e);
             return NO_VERSION_FILE_FOUND;
         }
