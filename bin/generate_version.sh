@@ -1,7 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-version=$(git describe --tags --always --dirty)
+readonly SOURCE_FOLDER=$(dirname $(readlink -f ${0}))
+readonly VERSION=$(git describe --tags --always --dirty)
 
-echo "version is ${version}"
+if [[ "$#" -eq 0 ]]; then
+  version_folder=${SOURCE_FOLDER}/../build/resources/main
+else
+  version_folder=$1
+fi
 
-echo ${version} > ./src/main/resources/VERSION
+echo "version is ${VERSION}"
+
+mkdir -p ${version_folder}
+echo ${VERSION} > ${version_folder}/VERSION

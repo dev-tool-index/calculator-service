@@ -1,10 +1,12 @@
 package com.example.devtoolindex.helper;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
 import com.mongodb.MongoClientURI;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.InetAddressValidator;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -12,10 +14,8 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.charset.Charset;
 
 /**
  * Created by hongkailiu on 2016-04-16.
@@ -63,15 +63,16 @@ public class Helper {
     }
 
     /* package */ String loadVersionFromResource(String path) {
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        try (InputStream is = classloader.getResourceAsStream(path)) {
-            String version = StringUtils.trim(IOUtils.toString(is, Charset.defaultCharset()));
+        try {
+            String version = StringUtils
+                .trim(Resources.toString(Resources.getResource(path),
+                    Charsets.UTF_8));
             if (StringUtils.isNoneBlank(version)) {
                 return version;
             }
             log.error(EMPTY_VERSION_FILE);
             return EMPTY_VERSION_FILE;
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | IllegalArgumentException e) {
             log.error(e.getMessage(), e);
             return NO_VERSION_FILE_FOUND;
         }
