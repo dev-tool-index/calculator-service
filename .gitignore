@@ -16,3 +16,4 @@ gradle-app.setting
 .idea/
 calculator-service.iml
 # src/main/resources/VERSION
+logs/
